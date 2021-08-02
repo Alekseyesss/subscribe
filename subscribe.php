@@ -29,9 +29,8 @@ define('SUBSCRIBE_URL', plugin_dir_url(__FILE__));
 require_once(SUBSCRIBE_PATH . 'Table.php');
 require_once(SUBSCRIBE_PATH . 'Vue.php');
 require_once(SUBSCRIBE_PATH . 'SaveBD.php');
+require_once(SUBSCRIBE_PATH . 'Ajax.php');
 
-$vue = new \Vue();
-$subscribe = new \SaveBD();
 
 
 register_activation_hook(__FILE__, ['Table', 'create_table']);
