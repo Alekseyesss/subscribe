@@ -2,11 +2,11 @@
 
 class Vue
 {
-	function __construct()
+	public function hooks()
 	{
 		add_shortcode('subscribe_form', [$this, 'form']);
-		add_action( 'wp_enqueue_scripts', [ $this, 'register_styles' ] );
-		add_action( 'wp_enqueue_scripts', [ $this, 'register_scripts' ] );
+		add_action('wp_enqueue_scripts', [$this, 'register_styles']);
+		add_action('wp_enqueue_scripts', [$this, 'register_scripts']);
 	}
 	public function register_styles()
 	{
@@ -30,15 +30,15 @@ class Vue
 			'subscribe',
 			'subscribe',
 			[
-				'adminUrl' => admin_url( 'admin-ajax.php' ),
-				'nonce'    => wp_create_nonce( Ajax::SUBSCRIBE_NONCE_ACTION ),
+				'adminUrl' => admin_url('admin-ajax.php'),
+				'nonce'    => wp_create_nonce(Ajax::SUBSCRIBE_NONCE_ACTION),
 			]
 		);
 	}
 	public function form()
 	{
-		wp_enqueue_style( 'subscribe' );
-		wp_enqueue_script( 'subscribe' );
+		wp_enqueue_style('subscribe');
+		wp_enqueue_script('subscribe');
 		ob_start();
 ?>
 		<form action="" method="POST" class="subscribe-form">
@@ -54,3 +54,4 @@ class Vue
 };
 
 $vue = new Vue();
+$vue->hooks();

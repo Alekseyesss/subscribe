@@ -4,7 +4,7 @@ class Ajax extends SaveBD
 {
 	const SUBSCRIBE_NONCE_ACTION = 'subscribe-action';
 
-	function __construct()
+	public function hooks()
 	{
 		add_action('wp_ajax_subscribe', [$this, 'subscribe']);
 		add_action('wp_ajax_nopriv_subscribe', [$this, 'subscribe']);
@@ -35,7 +35,7 @@ class Ajax extends SaveBD
 
 		wp_send_json_success(esc_html__('You were successfully subscribed', 'subscribe'));
 	}
-
 }
 
 $subscribe = new Ajax();
+$subscribe->hooks();
