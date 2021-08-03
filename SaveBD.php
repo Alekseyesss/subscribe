@@ -1,9 +1,9 @@
 <?php
 
-abstract class SaveBD
+class SaveBD
 {
 
-	protected function save_subscriber($email)
+	public function save_subscriber($email)
 	{
 
 		global $wpdb;
@@ -18,5 +18,4 @@ abstract class SaveBD
 			]
 		);
 	}
-
 }

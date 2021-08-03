@@ -1,8 +1,14 @@
 <?php
 
-class Ajax extends SaveBD
+class Ajax
 {
 	const SUBSCRIBE_NONCE_ACTION = 'subscribe-action';
+	private $save;
+
+	function __construct(SaveBD $saveBD)
+	{
+		$this->save = $saveBD;
+	}
 
 	public function hooks()
 	{
@@ -24,7 +30,7 @@ class Ajax extends SaveBD
 			);
 		}
 
-		if (2 === $this->save_subscriber($email)) {
+		if (2 === $this->save->save_subscriber($email)) {
 			wp_send_json_error(
 				sprintf(
 					esc_html__('The %s email is already exists', 'subscribe'),
@@ -37,5 +43,5 @@ class Ajax extends SaveBD
 	}
 }
 
-$subscribe = new Ajax();
+$subscribe = new Ajax(new SaveBD());
 $subscribe->hooks();
